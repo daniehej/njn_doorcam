@@ -76,3 +76,5 @@ if ret:
     cv2.imshow('Video', frame)
 
 ```
+
+From face_recognition we can thus gain the location and encoding of the face which is recognized. The encoding is a mapping of the information which the face contains into a space where two encodings of the face of one person should be closer to each other in the encoding space, while the encodings of the faces of different people should have a greater distance from each other.
