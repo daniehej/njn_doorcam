@@ -11,7 +11,7 @@ After looking at these projects, you may have some ideas of what is possible. Yo
 
 In order to help overcome the hurdle of getting started, this writeup goes through the process of creating a project in Python. 
 
-# Hallway camera
+# Making a simple AI application with the camera
 
 When I get home after a long day, I would like to get a smile on my face. One way to do that is if someone will greet me when I get back home. However, if there is nobody home that person could be Jetson Nano. Therefore, we will try to use face recognition using the camera to greet people at the door.
 
