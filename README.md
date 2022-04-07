@@ -50,7 +50,7 @@ if ret:
     cv2.imshow('Video', frame)
 ```
 
-We then want to send the frame into `face_recognition` to, exactly as the name implies, perform face recognition. The size of the image obtained from the camera (1280x960) is too large to get good performance with face_recognition on the Jetson Nano. Therefore, we scale the image down prior to recognition. If we change the frame from BGR to RGB format, we can simply use the `face_recognition` on the resulting frame.
+We then want to send the frame into `face_recognition` to, exactly as the name implies, perform face recognition. The size of the image obtained from the camera (1280x960) is too large to get good performance with `face_recognition` on the Jetson Nano. Therefore, we scale the image down prior to recognition. If we change the frame from BGR to RGB format, we can simply use the `face_recognition` on the resulting frame.
 
 ```python
 import cv2
@@ -77,4 +77,25 @@ if ret:
 
 ```
 
-From face_recognition we can thus gain the location and encoding of the face which is recognized. The encoding is a mapping of the information which the face contains into a space where two encodings of the face of one person should be closer to each other in the encoding space, while the encodings of the faces of different people should have a greater distance from each other.
+From `face_recognition` we can thus gain the location and encoding of the face which is recognized. The encoding is a mapping of the information which the face contains into a space where two encodings of the face of one person should be closer to each other in the encoding space, while the encodings of the faces of different people should have a greater distance from each other. The model is trained so that pictures of the same person should have a distance less than 0.6 to each other.
+
+Now that we have the face locations and encodings, we can display a bounding box around the face so that we can see visually that the face detection is working.
+
+```python
+# Draw a box around each face
+for face_location, face_encoding in zip(face_locations, face_encodings):
+    top, right, bottom, left = face_location
+    
+    # Scale back up face locations since detection was performed on downscaled image
+    top *= scale
+    right *= scale
+    bottom *= scale
+    left *= scale
+
+    # Draw a box around the face, in the color red (cv2 uses BGR) with a thickness of 2 pixels
+    cv2.rectangle(frame, (left, top), (right,bottom), (0,0,255), 2)
+
+cv2.imshow('Video', frame)
+```
+
+
