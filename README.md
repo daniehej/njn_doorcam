@@ -2,6 +2,7 @@
 
 Demo Application for Nvidia Jetson Nano. Face recognition and door greeting robot including voice activation for registering personalised greetings.
 
+Original version at https://git.its.aau.dk/WW82ZE/njn_doorcam
 
 What can you do with Jetson Nano?
 
